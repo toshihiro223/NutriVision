@@ -4,7 +4,8 @@ from PIL import Image
 import os
 
 # FastAPIエンドポイント
-url = 'http://127.0.0.1:8000/vision/'
+# url = 'http://127.0.0.1:8000/vision/'   # Local
+url = 'http://54.173.229.170:8000/vision/'
 
 def classify_image(image):
     files = {"file": (uploaded_file.name, uploaded_file, uploaded_file.type)}
