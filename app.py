@@ -2,10 +2,10 @@ import streamlit as st
 import requests
 from PIL import Image
 import os
+import config
 
 # FastAPIエンドポイント
-# url = 'http://127.0.0.1:8000/vision/'   # Local
-url = 'http://54.173.229.170:8000/vision/'
+url = config.FASTAPI_URL
 
 def classify_image(image):
     files = {"file": (uploaded_file.name, uploaded_file, uploaded_file.type)}

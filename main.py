@@ -14,6 +14,7 @@ import pytorch_lightning as pl
 from PIL import Image
 import uuid
 import shutil
+import config
 
 ########## 食品画像の認識 ##########
 # ラベルの定義
@@ -106,7 +107,7 @@ class FoodNet(pl.LightningModule):
 class NutritionInfoFetcher:
     def __init__(self, api_key):
         self.api_key = api_key
-        self.base_url = "https://api.nal.usda.gov/fdc/v1/foods/search"
+        self.base_url = config.BASE_URL
 
     def get_nutrition_info(self, food_name):
         headers = {'X-Api-Key': self.api_key}
@@ -193,7 +194,7 @@ async def classify_image(file: UploadFile = File(...)):
     print(f"predicted_label : {predicted_label}")
 
     # USDAのAPI Keyを定義
-    api_key = 'PibhGN7aHl3zGj9yBQM55z26qVdu4T8RT6dC8UcD'
+    api_key = config.UDSA_API_KEY
     
     # インスタンス化
     fetcher = NutritionInfoFetcher(api_key)
