@@ -15,6 +15,8 @@ from PIL import Image
 import uuid
 import shutil
 import config
+from mangum import Mangum
+
 
 ########## 食品画像の認識 ##########
 # ラベルの定義
@@ -124,6 +126,9 @@ class NutritionInfoFetcher:
 
 ########## FastAPI ##########
 app = FastAPI()
+
+# Lambda用
+handler = Mangum(app)
 
 # アップロードされた画像を一時保存する
 async def save_upload_file(upload_file: UploadFile, destination_path: Path) -> Path:
